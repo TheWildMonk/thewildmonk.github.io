@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    {% include head_post.html %}
+    <body>
+    {% include header_post.html %}
+    <!-- Start Main content -->
+    <main class="bg-grey pb-30">
+        <div class="container single-content">
+            <div class="entry-header entry-header-style-1 mb-50 pt-50">
+                <h1 class="entry-title mb-50 font-weight-900">
+                    {{page.title}}
+                </h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="entry-meta align-items-center meta-2 font-small color-muted">
+                            <p class="mb-5">
+                                <a class="author-avatar" href="#"><img class="img-circle" src="{{post.url}}/assets/imgs/authors/author-3.jpg" alt=""></a>
+                                By <a href="author.html"><span class="author-name font-weight-bold">{{page.author}}</span></a>
+                            </p>
+                            <span class="mr-10"> {{page.date}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right d-none d-md-inline">
+                        <ul class="header-social-network d-inline-block list-inline mr-15">
+                            <li class="list-inline-item text-muted"><span>Share this: </span></li>
+                            <li class="list-inline-item"><a class="social-icon fb text-xs-center" target="_blank" href="http://facebook.com/sharer.php?u={{page.url}}"><i class="elegant-icon social_facebook"></i></a></li>
+                            <li class="list-inline-item"><a class="social-icon tw text-xs-center" target="_blank" href="http://twitter.com/share?text={{page.title}}&url={{page.url}}&hashtags={{page.hashtag}}"><i class="elegant-icon social_twitter "></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--end single header-->
+            <article class="entry-wraper mb-50">
+                {{content}}
+            </article>
+        </div>
+        <!--container-->
+    </main>
+    <!-- End Main content -->
+    {% include footer.html %}
+    {% include scripts_post.html %}
+    </body>
+</html>
