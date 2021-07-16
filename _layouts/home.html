@@ -31,10 +31,9 @@ layout: default
                         <p class="d-inline-block mr-5 mb-0"><i
                                 class="elegant-icon  icon_tag_alt mr-5 text-muted"></i>Hot tags:</p>
                         <ul class="list-inline d-inline-block tags">
-                            <li class="list-inline-item"><a href="#"># Covid-19</a></li>
-                            <li class="list-inline-item"><a href="#"># Inspiration</a></li>
-                            <li class="list-inline-item"><a href="#"># Work online</a></li>
-                            <li class="list-inline-item"><a href="#"># Stay home</a></li>
+                            {% for cat in site.categories %}
+                            <li class="list-inline-item"><a href="/categories.html"># {{cat[0]}}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -61,7 +60,7 @@ layout: default
                         </div>
                         <div class="post-content p-30">
                             <div class="entry-meta meta-0 font-small mb-10">
-                                <a href="{{post.category}}"><span class="post-cat text-info">{{post.category}}</span></a>
+                                <a href="{{post.categories}}"><span class="post-cat text-info">{{post.categories}}</span></a>
                             </div>
                             <div class="d-flex post-card-content">
                                 <h5 class="post-title mb-20 font-weight-900">
@@ -88,7 +87,7 @@ layout: default
                             <div class="post-content p-30">
                                 <div class="entry-meta meta-0 font-small mb-10">
                                     <a href="category.html"><span
-                                            class="post-cat text-info">{{post.category}}</span></a>
+                                            class="post-cat text-info">{{post.categories}}</span></a>
                                 </div>
                                 <div class="d-flex post-card-content">
                                     <h5 class="post-title mb-20 font-weight-900">
