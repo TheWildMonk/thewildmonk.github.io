@@ -22,7 +22,22 @@ comments: true
                     </div>
                     <div class="col-md-6 text-right d-none d-md-inline">
                         <ul>
-                            <li class="list-inline-item text-muted"><span><a href="/category.html">Category: {{ page.categories | join: ", " }}</a></span></li>
+                            <li class="list-inline-item text-muted">
+                                <span>
+                                    <div class="post-categories">
+                                        <span class="font-weight-bold">Categories:</span>
+                                        {% if post %}
+                                        {% assign categories = post.categories %}
+                                        {% else %}
+                                        {% assign categories = page.categories %}
+                                        {% endif %}
+                                        {% for category in categories %}
+                                        <a href="{{base.url}}/category/{{category|slugize}}">#{{category | capitalize}}</a>
+                                        {% unless forloop.last %}&nbsp;{% endunless %}
+                                        {% endfor %}
+                                    </div>
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
