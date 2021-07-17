@@ -31,8 +31,8 @@ layout: default
                         <p class="d-inline-block mr-5 mb-0"><i
                                 class="elegant-icon  icon_tag_alt mr-5 text-muted"></i>Hot tags:</p>
                         <ul class="list-inline d-inline-block tags">
-                            {% for cat in site.categories %}
-                            <li class="list-inline-item"><a href="/categories.html"># {{cat[0]}}</a></li>
+                            {% for cat in site.categories limit: 3 %}
+                            <li class="list-inline-item"><a href="/category.html"># {{cat[0]}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -64,7 +64,7 @@ layout: default
                             </div>
                             <div class="d-flex post-card-content">
                                 <h5 class="post-title mb-20 font-weight-900">
-                                    <a href="single.html">{{post.title}}</a>
+                                    <a href="{{post.url}}">{{post.title}}</a>
                                 </h5>
                                 <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
                                     <span class="post-on">{{post.date}}</span>
@@ -81,13 +81,13 @@ layout: default
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    {%for post in site.posts limit: 2%}
+                    {% for post in site.posts limit: 3 %}
                     <article class="col-md-12 mb-40 wow fadeInUp  animated">
                         <div class="post-card-1 border-radius-10 hover-up">
                             <div class="post-content p-30">
                                 <div class="entry-meta meta-0 font-small mb-10">
                                     <a href="category.html"><span
-                                            class="post-cat text-info">{{post.categories}}</span></a>
+                                            class="post-cat text-info">{{ post.categories }}</span></a>
                                 </div>
                                 <div class="d-flex post-card-content">
                                     <h5 class="post-title mb-20 font-weight-900">
