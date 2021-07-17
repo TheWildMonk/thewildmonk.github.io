@@ -60,7 +60,7 @@ layout: default
                         </div>
                         <div class="post-content p-30">
                             <div class="entry-meta meta-0 font-small mb-10">
-                                <a href="{{post.categories}}"><span class="post-cat text-info">{{post.categories | join: ', '}}</span></a>
+                                <a href="{{post.categories}}"><span class="post-cat text-info">{{post.categories | join: ', '| capitalize}}</span></a>
                             </div>
                             <div class="d-flex post-card-content">
                                 <h5 class="post-title mb-20 font-weight-900">
@@ -87,7 +87,7 @@ layout: default
                             <div class="post-content p-30">
                                 <div class="entry-meta meta-0 font-small mb-10">
                                     <a href="category.html"><span
-                                            class="post-cat text-info">{{ post.categories }}</span></a>
+                                            class="post-cat text-info">{{post.categories | join: ', '| capitalize}}</span></a>
                                 </div>
                                 <div class="d-flex post-card-content">
                                     <h5 class="post-title mb-20 font-weight-900">
