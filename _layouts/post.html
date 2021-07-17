@@ -17,7 +17,7 @@ comments: true
                                 <a class="author-avatar" href="#"><img class="img-circle" src="{{post.url}}/assets/imgs/authors/author-3.jpg" alt=""></a>
                                 By <a href="author.html"><span class="author-name font-weight-bold">{{page.author}}</span></a>
                             </p>
-                            <span class="mr-10"> {{page.date}}</span>
+                            <span class="mr-10"> {{page.date | date_to_string}}</span>
                         </div>
                     </div>
                     <div class="col-md-6 text-right d-none d-md-inline">

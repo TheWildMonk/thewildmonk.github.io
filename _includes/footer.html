@@ -7,7 +7,7 @@
                     <div class="widget-header-2 position-relative mb-30">
                         <h5 class="mt-5 mb-30">Address</h5>
                         <p>Road - 03, Block - E, House - 23/5A</br>
-                        Radiant Valley, Rampura, Banasree Project </br>
+                        Radiant Valley, Rampura, Banasree</br>
                         Dhaka - 1219, Bangladesh</p>
                     </div>
                 </div>
@@ -18,9 +18,9 @@
                         <h5 class="mt-5 mb-30">Quick link</h5>
                     </div>
                     <ul class="font-small">
-                        <li class="cat-item cat-item-2"><a href="/about.html">About</a></li>
+                        <li class="cat-item cat-item-1"><a href="/about.html">About</a></li>
                         <li class="cat-item cat-item-2"><a href="/blog.html">Blog</a></li>
-                        <li class="cat-item cat-item-7"><a href="/contact.html">Contact</a></li>
+                        <li class="cat-item cat-item-3"><a href="/contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -30,7 +30,9 @@
                         <h5 class="mt-5 mb-30">Tagcloud</h5>
                     </div>
                     <div class="tagcloud mt-50">
-                        <a class="tag-cloud-link" href="category.html">beautiful</a>
+                        {% for cat in site.categories limit: 3 %}
+                        <a class="tag-cloud-link" href="/category/{{cat[0]}}">{{ cat[0] }}</a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
