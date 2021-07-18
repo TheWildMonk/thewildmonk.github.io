@@ -1,0 +1,108 @@
+---
+layout: post
+permalink: /:categories/:title
+title:  "Hirst Spot Painting with Turtle Graphics"
+date:   2021-07-11
+author: Shuvo Nasir
+image: /assets/imgs/post/hirst_spot_painting_2.jpg"
+categories:
+  - "python"
+---
+<!-- Post Introduction -->
+<p class="font-weight-500">
+  I don't know a bit about art. Back in school days, we had arts & crafts and I
+  loved to sketch. But if I would know an art can make me this amount of money, 
+  I would've concentrated on that rather than spending a bit on anything else.
+</p>
+</br>
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/hirst_spot_painting_2.jpg" alt="{{page.title}}" />
+</figure></br>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  However, all frustrations apart, today I've made a program that can make me a million (!) in 
+  seconds like <a href="https://www.artsy.net/artist-series/damien-hirst-spots" target="_blank"><u>Damien Hirst</u></a>
+  does.</br>
+  The objective of today's project was to create a spot painting with randomly picked colors from 
+  the <a href="https://pypi.org/project/colorgram.py/"><u>colorgram</u></a> python library. The target
+  was to create a 10x10 dots on the turtle graphic canvas and create a painting similar to the following 
+  image of Mr. Hirst 😄.
+  </br>
+</P>
+
+<!-- Post Image 2-->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/hirst_spot_painting_1.jpg" alt="{{page.title}}" />
+</figure></br>
+
+<p>It took me around <strong>1 Hour</strong>
+  to figure out the nitty gritty of the project and to implement it on the canvas.
+  Here's the code snippet -</br>
+</p>
+
+<!-- Code Area -->
+{% highlight python%} 
+
+  import turtle as t
+  import random as rd
+
+  color_list = [(241, 222, 86), (35, 98, 185), (86, 174, 218),
+                (169, 67, 37), (217, 158, 84), (187, 16, 34), (173, 49, 85), (78, 108, 210), (225, 57, 103),
+                (161, 163, 23), (166, 27, 17), (75, 176, 77), (232, 70, 44), (225, 123, 172), (125, 198, 117),
+                (20, 55, 146), (59, 119, 64), (118, 226, 184), (71, 30, 43), (135, 216, 233), (238, 158, 217),
+                (41, 172, 183), (29, 41, 84), (242, 175, 152), (162, 165, 235), (90, 30, 22)]
+
+
+  # Setting screen attributes
+  screen = t.Screen()
+  screen.canvwidth = 500
+  screen.canvheight = 500
+
+  # Resetting the turtle world coordinates
+  screen.reset()
+  screen.setworldcoordinates(-50, -50, 500, 500)
+
+  # Setting turtles attributes
+  tim = t.Turtle()
+  t.colormode(255)
+  tim.speed("fastest")
+  tim.hideturtle()
+
+
+  def reset_line_position():
+      tim.left(90)
+      tim.forward(50)
+      tim.left(90)
+      tim.setx(0)
+      tim.left(180)
+
+
+  # Function to create the art in a line
+  def create_art():
+      for _ in range(10):
+          tim.penup()
+          tim.dot(20, rd.choice(color_list))
+          if _ < 9:
+              tim.forward(50)
+
+
+  # While loop to create the 10x10 art
+  end_of_canvas = 1
+  while end_of_canvas < 11:
+      create_art()
+      if end_of_canvas < 10:
+          reset_line_position()
+      end_of_canvas += 1
+
+  screen.exitonclick()
+
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Hirst-Painting-Project" target="_blank"><u>github</u></a> repository.
+  With this and more, I'll post tomorrow again in sha Allah and will share what I'll learn tomorrow.
+</P>
