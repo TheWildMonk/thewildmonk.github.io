@@ -33,3 +33,6 @@ gem "webrick", "~> 1.7"
 
 # Jekyll paginate
 gem "jekyll-paginate"
+
+# Syntax highlighting
+gem "rouge"
