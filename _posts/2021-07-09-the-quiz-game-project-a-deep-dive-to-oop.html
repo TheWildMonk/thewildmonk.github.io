@@ -1,0 +1,58 @@
+---
+layout: post
+permalink: /:categories/:title
+title:  "The Quiz Game Project - A Deep Dive to OOP"
+date:   2021-07-09
+author: Shuvo Nasir
+image: /assets/imgs/post/quiz_game.jpg"
+categories:
+  - "python"
+---
+<!-- Post Introduction -->
+<p class="font-weight-500">
+  It's my day 17 and it's getting really really tough with all those new OOP concepts mixed
+  with procedural programming. But, to be honest, I'm actually enjoying it now! And I guess
+  <strong>"I AM IN LOVE WITH PYTHON"</strong>>
+</p>
+</br>
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/quiz_game.jpg" alt="post-title" />
+</figure></br>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  Today's goal was to make a quiz game project & learn more about how to make our own
+  classes and objects. The final output of the project was to ask user for True/False 
+  answer against a random question. Based on whether the user answered correctly or 
+  wrong, user will get 1/0 point. There was in total of 12 questions which was randomly 
+  selected with the help of python's random module. And at the end of 12 questin, the 
+  user will get final result based on how many questions the user got right. Here is the 
+  code snippet -</br>
+</P>
+<!-- Code Area -->
+{% highlight python%}
+from question_model import Question
+from data import question_data
+from quiz_brain import QuizBrain
+
+question_bank = []
+for question in question_data:
+    question_bank.append(Question(question["text"], question["answer"]))
+
+quiz = QuizBrain(question_bank)
+while quiz.still_has_question():
+    quiz.next_question()
+
+print("You've completed the quiz.")
+print(f"Your final score was: {quiz.score}/{quiz.question_number}")
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+The question model & data were provided by Angella. These can be found 
+in my github repository for this project. </br>
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Quiz-Game-Project">github</a> repository. 
+  With this and more, I'll post tomorrow again in sha Allah with a new concept I learned.
+</P>
