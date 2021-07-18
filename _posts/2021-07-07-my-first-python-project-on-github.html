@@ -1,0 +1,113 @@
+---
+layout: post
+permalink: /:categories/:title
+title: "My First Python Project on Github"
+date: 2021-07-07
+author: Shuvo Nasir
+image: /assets/imgs/post/coffee_machine.jpg
+categories:
+  - "python"
+---
+
+<!-- Post Introduction -->
+<p class="font-weight-500">
+  While wondering how I should achieve my goal to become a data scientist and where I should start, one day suddently
+  a facebook ad popped up on my phone screen. A COURSE ON UDEMY! 
+</p>
+</br>
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/coffee_machine.jpg" alt="post-title" />
+</figure></br>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  Most of the day, I used to scroll by those annoying ads, but this time it caught my attention. A bootcamp? For 100 days?
+  On Python? Oooh.....</br>
+  
+  Back in 2018, I first started learning python, but gave up after just 3 days when the course instructor told to find out
+  the prime number through code. 😆 I know, right? But this course here caught my attention. So I thought of watching the
+  preview of the course, and there.....Angella Yu, the course instructor of the well known python course on Udemy - 
+  <a href="https://www.udemy.com/course/100-days-of-code/">100 days of code: The Complete Python Pro Bootcamp 2021</a> struck me hard. 
+  She mentioned the journey of these hundred days in such a way, I had to enroll in as I was enthusiastic about programming since my graduation 
+  life though I'm a EEE graduate [Ehem ehem...]</br>
+
+  However, here I am in my 30s' and on 15th day of the course. As I created this blog merely to share my journey to become a data
+  scientist, I give it a thought about sharing all the projects I have to do in my journey, what I learn and several topics regarding
+  data science. </br>
+
+  The project of Day 15 was a coffee machine project through procedural programming. And I have done this! 😁 ON MY OWN!
+  I seriously gave a pat on my back when I did this. Here's the code snippet.
+</P>
+<!-- Code Area -->
+{% highlight python %}
+# Import necessary libraries
+from data import MENU, resources
+
+# Creating variables
+water = resources["water"]
+milk = resources["milk"]
+coffee = resources["coffee"]
+money = 0
+
+close_machine = False
+while not close_machine:
+
+    # TODO: 1. Ask the user for their choice of either coffee or the report of current status of the coffee machine
+    #  or stop the machine.
+    user_choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
+
+    # TODO: 2. If user asks for the report, provide the current status of the report.
+    #  Else ask user for coins.
+    if user_choice == "off":
+        close_machine = True
+    elif user_choice == "report":
+        print(f"Water: {water}ml\n"
+              f"Milk: {milk}ml\n"
+              f"Coffee: {coffee}g\n"
+              f"Money: ${money}")
+    elif user_choice == "espresso" or user_choice == "latte" or user_choice == "cappuccino":
+
+        # TODO: 2a. If there's not enough resource, let user know and ask the user again.
+        #  Else, ask the user for coins.
+        if water < MENU[user_choice]["ingredients"]["water"] and milk < MENU[user_choice]["ingredients"]["milk"] and \
+                coffee < MENU[user_choice]["ingredients"]["coffee"]:
+            print(f"Sorry. there is not enough water 💧 for {user_choice}.")
+        else:
+            quarters = int(input("How many quarters?: ")) * 0.25
+            dimes = int(input("How many dimes?: ")) * 0.10
+            nickels = int(input("How many nickels?: ")) * 0.05
+            pennies = int(input("How many pennies?: ")) * 0.01
+            user_money = quarters + dimes + nickels + pennies
+            change = user_money - MENU[user_choice]["cost"]
+
+            # TODO: 2b. If user didn't provided enough money, let the user know and refund the money.
+            #  Else, give the change to user and serve the Coffee.
+            if user_money < MENU[user_choice]["cost"]:
+                print("Sorry, that's not enough money. Money refunded.")
+                money = money
+            else:
+                if change != 0:
+                    print(f"Here is ${round(change, 2)} in change.")
+                print(f"Here is your {user_choice} ☕, enjoy")
+
+                # TODO: 2c. Deduct the resources used from original resources.
+                if user_choice != "espresso":
+                    water -= MENU[user_choice]["ingredients"]["water"]
+                    milk -= MENU[user_choice]["ingredients"]["milk"]
+                    coffee -= MENU[user_choice]["ingredients"]["coffee"]
+                    money += MENU[user_choice]["cost"]
+                else:
+                    water -= MENU[user_choice]["ingredients"]["water"]
+                    coffee -= MENU[user_choice]["ingredients"]["coffee"]
+                    money += MENU[user_choice]["cost"]
+    else:
+        print("Please enter correct coffee name.")
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Coffee-Machine-Project">github</a> repository. 
+  With this and more, I'll post tomorrow again in sha Allah.
+</P>
