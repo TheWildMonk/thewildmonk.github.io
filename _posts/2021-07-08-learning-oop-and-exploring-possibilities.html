@@ -38,36 +38,38 @@ categories:
 </P>
 <!-- Code Area -->
 {% highlight python%}
-def print_hi(name)
-# Importing object libraries
-from menu import Menu, MenuItem
-from coffee_maker import CoffeeMaker
-from money_machine import MoneyMachine
 
-# Object declaration
-main_menu = Menu()
-coffee_machine = CoffeeMaker()
-process_money = MoneyMachine()
+  def print_hi(name)
+  # Importing object libraries
+  from menu import Menu, MenuItem
+  from coffee_maker import CoffeeMaker
+  from money_machine import MoneyMachine
 
-close_machine = False
-while not close_machine:
-    user_choice = input(f"What would you want? ({main_menu.get_items()}): ")
-    if user_choice == "off":
-        close_machine = True
-    elif user_choice == "report":
-        f"{coffee_machine.report()}\n{process_money.report()}"
-    else:
-        coffee = main_menu.find_drink(user_choice)
-        if coffee is not None and coffee_machine.is_resource_sufficient(coffee):
-            payment = process_money.make_payment(coffee.cost)
-            if payment:
-                coffee_machine.make_coffee(coffee)
+  # Object declaration
+  main_menu = Menu()
+  coffee_machine = CoffeeMaker()
+  process_money = MoneyMachine()
+
+  close_machine = False
+  while not close_machine:
+      user_choice = input(f"What would you want? ({main_menu.get_items()}): ")
+      if user_choice == "off":
+          close_machine = True
+      elif user_choice == "report":
+          f"{coffee_machine.report()}\n{process_money.report()}"
+      else:
+          coffee = main_menu.find_drink(user_choice)
+          if coffee is not None and coffee_machine.is_resource_sufficient(coffee):
+              payment = process_money.make_payment(coffee.cost)
+              if payment:
+                  coffee_machine.make_coffee(coffee)
+
 {% endhighlight %}
 
 <!-- Post Content -->
 <P class="font-weight-500">
   I was so overwhelmed with the size of the code that I was excited as a dog 🐶 whose
   owner came home after a long day 😆. </br>
-  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Coffee-Machine-Project-OOP">github</a> repository. 
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Coffee-Machine-Project-OOP" target="_blank"><u>github</u></a> repository. 
   With this and more, I'll post tomorrow again in sha Allah with a new concept.
 </P>

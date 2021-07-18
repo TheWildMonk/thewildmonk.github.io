@@ -32,29 +32,31 @@ categories:
   code snippet -</br>
 </P>
 <!-- Code Area -->
-{% highlight python%}
-from question_model import Question
-from data import question_data
-from quiz_brain import QuizBrain
+{% highlight python%} 
 
-question_bank = []
-for question in question_data:
-    question_bank.append(Question(question["text"], question["answer"]))
+  from question_model import Question
+  from data import question_data
+  from quiz_brain import QuizBrain
 
-quiz = QuizBrain(question_bank)
-while quiz.still_has_question():
-    quiz.next_question()
+  question_bank = []
+  for question in question_data:
+      question_bank.append(Question(question["text"], question["answer"]))
 
-print("You've completed the quiz.")
-print(f"Your final score was: {quiz.score}/{quiz.question_number}")
+  quiz = QuizBrain(question_bank)
+  while quiz.still_has_question():
+      quiz.next_question()
+
+  print("You've completed the quiz.")
+  print(f"Your final score was: {quiz.score}/{quiz.question_number}")
+
 {% endhighlight %}
 
 <!-- Post Content -->
 <P class="font-weight-500">
   At the end of this project, Angella (the course instructor!) taught how to use
-  <a href="https://opentdb.com/"><u>Open Trivaia Data Base</u></a>
+  <a href="https://opentdb.com/" target="_blank"><u>Open Trivaia Data Base</u></a>
   The question model & data were provided by Angella. These can be found 
   in my github repository for this project. </br>
-  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Quiz-Game-Project">github</a> repository. 
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Quiz-Game-Project" target="_blank"><u>github</u></a> repository. 
   With this and more, I'll post tomorrow again in sha Allah with a new concept I learned.
 </P>
