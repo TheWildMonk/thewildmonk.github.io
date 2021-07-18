@@ -1,0 +1,95 @@
+---
+layout: page
+author: Shuvo Nasir
+---
+<div class="bg-grey pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                {% for post in paginator.posts %}
+                <article class="col-md-12 mb-40 wow fadeInUp  animated">
+                    <div class="post-card-1 border-radius-10 hover-up">
+                        <div class="post-content p-30">
+                            <div class="entry-meta meta-0 font-small mb-10">
+                                {% for cat in post.categories%}
+                                <a href="category/{{cat}}"><span
+                                        class="post-cat text-info">{{cat}}</span></a>
+                                {% endfor %}
+                            </div>
+                            <div class="d-flex post-card-content">
+                                <h5 class="post-title mb-20 font-weight-900">
+                                    <a href="{{post.url}}">{{post.title}}</a>
+                                </h5>
+                                <div class="post-excerpt mb-25 font-small text-muted">
+                                    <p>{{post.excerpt}}</p>
+                                </div>
+                                <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
+                                    <span class="post-on">{{post.date | date_to_string}}</span>
+                                    <!-- <span class="post-by has-dot">23k views</span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                </br>
+                {%endfor%}
+
+                <!-- Pagination -->
+                {% if paginator.total_pages > 1 %}
+                <div class="pagination-area mb-30 wow fadeInUp animated">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">
+                            {% if paginator.previous_page %}
+                            <li class="page-item"><a class="page-link" href="{{ paginator.previous_page_path | relative_url }}"><i class="elegant-icon arrow_left"></i></a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link"><i class="elegant-icon arrow_left"></a></i></li>
+                            {% endif %}
+
+                            {% for page in (1..paginator.total_pages) %}
+                            {% if page == paginator.page %}
+                            <li class="page-item active"><a class="page-link">{{ page }}</a></li>
+                            {% elsif page == 1 %}
+                            <li class="page-item"><a class="page-link" href="{{ '/blog' | relative_url }}">{{ page }}</a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if paginator.next_page %}
+                            <li class="page-item"><a class="page-link" href="{{ paginator.next_page_path | relative_url }}"><i class="elegant-icon arrow_right"></i></a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link"><i class="elegant-icon arrow_right"></a></i></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Author box -->
+            <div class="col-lg-4">
+                <div class="widget-area">
+                    <div
+                        class="sidebar-widget widget-about mb-50 pt-30 pr-30 pb-30 pl-30 bg-white border-radius-5 has-border  wow fadeInUp animated">
+                        <img class="about-author-img mb-25" src="/assets/imgs/authors/author.jpg" alt="">
+                        <h5 class="mb-20">Hello, I'm {{page.author}}</h5>
+                        <p class="font-medium text-muted">
+                            Hi, I’m {{page.author}}, a Bangladeshi native. I currently work in Standard Chartered Bank.
+                            I am a self taught programmer with a bachelor degree in Electrical & Electronic Engineering.
+                            It's confusing, right? 😛
+                            YEAH!!! I like to explore and create. And currently, I'm learning DS & ML to become FUTURE PROOF.
+                            This blog is just a reflection of what I'm learning right now.
+                        </p>
+                        <strong>Follow me: </strong>
+                        <ul class="header-social-network d-inline-block list-inline color-white mb-20">
+                            <li class="list-inline-item"><a class="fb" href="https://facebook.com/shuvo.nasir.2203" target="_blank" title="Facebook"><i
+                                        class="elegant-icon social_facebook"></i></a></li>
+                            <li class="list-inline-item"><a class="tw" href="https://twitter.com/shuvonasir" target="_blank" title="Tweet now"><i
+                                        class="elegant-icon social_twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
