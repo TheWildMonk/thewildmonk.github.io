@@ -1,0 +1,93 @@
+---
+layout: post
+permalink: /:categories/:title
+title: "Let's Sketch with The Keyboard"
+date: 2021-07-19
+author: Shuvo Nasir
+image: /assets/imgs/post/etch_a_sketch.jpg"
+categories:
+  - "python"
+---
+<!-- Post Introduction -->
+<p class="font-weight-500">
+  <a href="https://docs.python.org/3/library/turtle.html#turtle.listen" target="_blank">Event listeners</a> in 
+  turtle graphic is a great way to engage an user to do something on the turtle screen. In today's 
+  lesson, we learned about Event Listeners, Higher Order Functions, State & instances in python.
+</p>
+</br>
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/etch_a_sketch.jpg" alt="{{page.title}}" />
+</figure></br>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  The first part of today's lesson had an exercise to make an Etch a Sketch game where an user 
+  can use several keys to move the turtle to draw. In this project, we learned how to use higher 
+  order function. A higher order function is a function that takes another function as an arguement. 
+  By using the <a href="https://docs.python.org/3/library/turtle.html#turtle.onkey" target="_blank">screen.onkey()</a> 
+  method, I've created the movements of the turtle. While working though this project, I've also gave 
+  thought about using the <a href="https://docs.python.org/3/library/turtle.html#turtle.onkeypress" target="_blank">
+  turtle.onkeypress()</a> function, and so, I've created another brunch on github just for this 
+  experiment. <strong>AND IT WORKED!!!</strong> 😅 Here's the code snippet -
+  </br>
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  from turtle import Turtle, Screen
+
+  # Creating necessary objects
+  tim = Turtle()
+  screen = Screen()
+  tim.speed("fastest")
+
+
+  # Functions for the movement
+  def move_fd():
+      tim.forward(10)
+
+
+  def move_bk():
+      tim.backward(10)
+
+
+  def move_cw():
+      tim.right(10)
+
+
+  def move_ccw():
+      tim.left(10)
+
+
+  def world_clear():
+      tim.clear()
+      tim.penup()
+      tim.home()
+      tim.pendown()
+
+
+  # Call the listen method for Screen
+  screen.listen()
+
+  # Call the onkey method for the movements of turtle
+  screen.onkey(key="w", fun=move_fd)
+  screen.onkey(key="s", fun=move_bk)
+  screen.onkey(key="a", fun=move_cw)
+  screen.onkey(key="d", fun=move_ccw)
+  screen.onkey(key="c", fun=world_clear)
+
+  # Screen exit method
+  screen.exitonclick()
+
+{% endhighlight %}
+
+<!-- Post Content -->
+</br>
+<P class="font-weight-500">
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Etch-A-Sketch-Project" target="_blank"><u>github</u></a> repository.
+  There is another <a href="https://github.com/TheWildMonk/Etch-A-Sketch-Project/tree/continuousDrawing" target="_blank">branch</a> where I've used the continuous drawing method with the help of turtle.onkeypress() 
+  method.</br>
+  With this and more, I'll post tomorrow again in sha Allah and will share what I'll learn tomorrow.
+</P>
