@@ -1,0 +1,174 @@
+---
+layout: post
+permalink: /:categories/:title
+title: "Best On A Turtle Racing Game?!!"
+date: 2021-07-20
+author: Shuvo Nasir
+image: /assets/imgs/post/turtle_racing_game_2.jpg"
+categories:
+  - "python"
+---
+<!-- Post Introduction -->
+<p class="font-weight-500">
+  From a very young age, I have heard about all kind of racing games like cars, bikes, horses all the way up to 
+  dogs; on which people bet! But have you ever heard about betting on a <strong>turtle racing</strong>? If not, then let me show 
+  you where you can!
+</p>
+</br>
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/turtle_racing_game_2.jpg" alt="{{page.title}}" />
+</figure></br>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  In this project, we have hands on practice of the an object state and multiple instances. The objective of the project is to 
+  create a game where 6 different colored turtles will race against each other. But before the race begins, an user can bet on 
+  which of the 6 turtle will win. Based on the winner, at the end of the race, the user will get to know whether he/she is a winner 
+  or not.
+  </br>
+  Initially I've set up the color base with a list of colors and take user input to place a bet on a certain colored turtle.
+  </br>
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  # Color base
+  colors = ["red", "green", "blue", "yellow", "maroon", "orange"]
+
+  # While loop terminator
+  race_end = False
+
+  # User input for placing a bet
+  user_bet = screen.textinput(title="Make your bet", prompt="Who will win the race? Pick up a color from "
+                                                            "'red', 'green', 'blue', 'yellow', 'maroon', 'orange': ")
+{% endhighlight %}
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/turtle_racing_game_1.jpg" alt="{{page.title}}" />
+</figure></br>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  The while loop terminator is initiated at the beginning of the program so that it prevents our while loop to not start 
+  before the user is still deciding on what to bet on. 
+  </br>
+  After taking the user input, I've set an if..else statement just to check whether the user's bet is a valid color from 
+  our list or not. If it's not valid, the program will exit and let the user know that it's not a valid color from our 
+  colored turtles.
+  </br>
+  But if the user bets on a color from our color base, the race will begin. For that, at first I've generated 6 turtle 
+  objects with different color from our color base and appended the turtle objects in a list. After that, I've used the 
+  <a href="https://docs.python.org/3/library/turtle.html#turtle.hideturtle"><u>hideturtle()</u></a> method to hide the 
+  initially created turtle object. Then I've set the position of each turtle at the beginning of race line using the turtle 
+  graphic's built in method <a href="https://docs.python.org/3/library/turtle.html#turtle.goto">
+  <u>goto()</u></a>
+  </br>
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  # Check whether user bet is present in the colors list. If it's not, the program will terminate, otherwise
+  # the game will run till the end of the race.
+  if user_bet not in colors:
+      screen.bye()
+      print("You've entered a wrong color, the race couldn't happen.")
+  else:
+      # Generate turtle objects
+      turtle_number = []
+      for color in colors:
+          new_turtle = tim.clone()
+          new_turtle.color(color)
+          turtle_number.append(new_turtle)
+
+      # Hide initial turtle
+      tim.hideturtle()
+
+      # Set up the turtles at starting position
+      y_cor = -125
+      for each_turtle in range(len(turtle_number)):
+          turtle_number[each_turtle].goto(-240, y_cor)
+          y_cor += 50
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  And finally a while loop to set on the racing. With the help of python's random module, I've set the pace 
+  of each turtle binding them inside a for loop.
+  </br>
+  After the first turtle that crosses the right edge of the screen, the race ends, and the user can see the 
+  result of his/her bet on the result prompt. Here's the code snippet of the whole project - 
+</P>
+
+
+<!-- Code Area -->
+{% highlight python%} 
+  import turtle
+  from turtle import Turtle as t, Screen as sc
+  import random
+
+  # Create necessary objects
+  tim = t(shape="turtle")
+  tim.speed("slow")
+  screen = sc()
+  screen.setup(width=500, height=400)
+  tim.penup()
+
+  # Color base
+  colors = ["red", "green", "blue", "yellow", "maroon", "orange"]
+
+  # While loop terminator
+  race_end = False
+
+  # User input for placing a bet
+  user_bet = screen.textinput(title="Make your bet", prompt="Who will win the race? Pick up a color from "
+                                                            "'red', 'green', 'blue', 'yellow', 'maroon', 'orange': ")
+
+  # Check whether user bet is present in the colors list. If it's not, the program will terminate, otherwise
+  # the game will run till the end of the race.
+  if user_bet not in colors:
+      screen.bye()
+      print("You've entered a wrong color, the race couldn't happen.")
+  else:
+      # Generate turtle objects
+      turtle_number = []
+      for color in colors:
+          new_turtle = tim.clone()
+          new_turtle.color(color)
+          turtle_number.append(new_turtle)
+
+      # Hide initial turtle
+      tim.hideturtle()
+
+      # Set up the turtles at starting position
+      y_cor = -125
+      for each_turtle in range(len(turtle_number)):
+          turtle_number[each_turtle].goto(-240, y_cor)
+          y_cor += 50
+
+      # Begin the race
+      while not race_end:
+          for turtle in turtle_number:
+              if turtle.xcor() < 230:
+                  next_position = random.randint(0, 10)
+                  turtle.forward(next_position)
+              else:
+                  # Terminate the race and show result to the user
+                  race_end = True
+                  if turtle.fillcolor() == user_bet:
+                      print(f"You've won! The {turtle.fillcolor()} turtle is the winner.")
+                  else:
+                      print(f"You've lost! The {turtle.fillcolor()} turtle is the winner.")
+
+      # Close the screen
+      screen.exitonclick()
+{% endhighlight %}
+
+<!-- Post Content -->
+</br>
+<P class="font-weight-500">
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/Turtle-Race-Project" target="_blank"><u>github</u></a> repository.
+  With this and more, I'll post tomorrow again in sha Allah about some new topic that I'll learn from the course.
+</P>
