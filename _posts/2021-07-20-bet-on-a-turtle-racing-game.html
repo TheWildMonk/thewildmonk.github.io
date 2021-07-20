@@ -29,7 +29,6 @@ categories:
   or not.
   </br>
   Initially I've set up the color base with a list of colors and take user input to place a bet on a certain colored turtle.
-  </br>
 </P>
 
 <!-- Code Area -->
@@ -41,20 +40,23 @@ categories:
   race_end = False
 
   # User input for placing a bet
-  user_bet = screen.textinput(title="Make your bet", prompt="Who will win the race? Pick up a color from "
-                                                            "'red', 'green', 'blue', 'yellow', 'maroon', 'orange': ")
+  user_bet = screen.textinput(title="Make your bet", prompt="Who will win the race? 
+  Pick up a color from 'red', 'green', 'blue', 'yellow', 'maroon', 'orange': ")
 {% endhighlight %}
 
-<!-- Post Image -->
-<figure class="image mb-30 m-auto text-center border-radius-10">
-  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/turtle_racing_game_1.jpg" alt="{{page.title}}" />
-</figure></br>
-
-<!-- Post Content -->
 <P class="font-weight-500">
   The while loop terminator is initiated at the beginning of the program so that it prevents our while loop to not start 
   before the user is still deciding on what to bet on. 
   </br>
+</p>
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/turtle_racing_game_1.jpg" alt="{{page.title}}" />
+</figure>
+
+<!-- Post Content -->
+<P class="font-weight-500">
   After taking the user input, I've set an if..else statement just to check whether the user's bet is a valid color from 
   our list or not. If it's not valid, the program will exit and let the user know that it's not a valid color from our 
   colored turtles.
@@ -64,8 +66,7 @@ categories:
   <a href="https://docs.python.org/3/library/turtle.html#turtle.hideturtle"><u>hideturtle()</u></a> method to hide the 
   initially created turtle object. Then I've set the position of each turtle at the beginning of race line using the turtle 
   graphic's built in method <a href="https://docs.python.org/3/library/turtle.html#turtle.goto">
-  <u>goto()</u></a>
-  </br>
+  <u>goto()</u></a>.
 </P>
 
 <!-- Code Area -->
