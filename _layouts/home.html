@@ -40,7 +40,9 @@ layout: default
         </div>
         <div class="loop-grid mb-30">
             <div class="row">
-                {%for post in site.posts limit: 4%}
+                {% assign n = site.posts | size %}
+                {% assign posts = site.posts | sample: n %}
+                {% for post in posts limit: 4 %}
                 <article class="col-lg-6 col-md-6 mb-30 wow fadeInUp animated" data-wow-delay="0.2s">
                     <div class="post-card-1 border-radius-10 hover-up">
                         <div class="post-thumb thumb-overlay img-hover-slide position-relative"
@@ -73,6 +75,9 @@ layout: default
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
+                    <div class="widget-header-1 position-relative mb-30  wow fadeInUp animated">
+                        <h5 class="mt-5 mb-30">Recent Posts</h5>
+                    </div>
                     {% for post in site.posts limit: 3 %}
                     <article class="col-md-12 mb-40 wow fadeInUp  animated">
                         <div class="post-card-1 border-radius-10 hover-up">
