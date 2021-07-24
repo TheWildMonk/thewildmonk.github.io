@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: search
 ---
 <!--Start search form-->
 <div class="main-search-form">
@@ -33,5 +33,25 @@ layout: default
         </div>
     </div>
 </div>
-<!-- Start Main content -->
-{{content}}
+<!--Search result-->
+<main>
+    <div class="col-12 align-self-center main-search-form-cover m-auto"></br>
+        <p class="text-center font-weight-900"><span class="search-text-bg">Search Result</span></p>
+        <ul id="search-results"></br></br></br></ul>
+        </br>
+    </div>
+</main>
+<script>
+    window.store = {
+        {% for post in site.posts %}
+        "{{ post.url | slugify }}": {
+            "title": "{{ post.title | xml_escape }}",
+            "author": "{{ post.author | xml_escape }}",
+            "categories": "{{ post.categories }}",
+            "content": {{ post.content | strip_html | strip_newlines | jsonify }},
+            "url": "{{ post.url }}"
+        }
+        {% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    };
+</script>

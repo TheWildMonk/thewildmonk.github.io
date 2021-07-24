@@ -8,11 +8,11 @@ layout: default
             <div class="row mb-20">
                 <div class="col-12 align-self-center main-search-form-cover m-auto">
                     <p class="text-center"><span class="search-text-bg">Search</span></p>
-                    <form action="#" class="search-header">
+                    <form action="/search.html" method="get" class="search-header">
                         <div class="input-group w-100">
-                            <input type="text" class="form-control" placeholder="Search stories, places and people">
+                            <input type="text" id="search-box" name="query" class="form-control" placeholder="Search stories, places and people">
                             <div class="input-group-append">
-                                <button class="btn btn-search bg-white" type="submit">
+                                <button class="btn btn-search bg-white" type="submit" value="search">
                                     <i class="elegant-icon icon_search"></i>
                                 </button>
                             </div>
@@ -24,56 +24,10 @@ layout: default
                 <div class="col-12 font-small suggested-area">
                     <h5 class="suggested font-heading mb-20 text-muted"> <strong>Suggested keywords:</strong></h5>
                     <ul class="list-inline d-inline-block">
-                        <li class="list-inline-item"><a href="category.html">World</a></li>
-                        <li class="list-inline-item"><a href="category.html">American</a></li>
-                        <li class="list-inline-item"><a href="category.html">Opinion</a></li>
-                        <li class="list-inline-item"><a href="category.html">Tech</a></li>
-                        <li class="list-inline-item"><a href="category.html">Science</a></li>
-                        <li class="list-inline-item"><a href="category.html">Books</a></li>
-                        <li class="list-inline-item"><a href="category.html">Travel</a></li>
-                        <li class="list-inline-item"><a href="category.html">Business</a></li>
+                        {% for cat in site.categories limit: 5 %}
+                        <li class="list-inline-item"><a href="category/{{cat[0]}}">#{{cat[0] | upcase}} </a></li>
+                        {% endfor %}
                     </ul>
-                </div>
-            </div>
-            <div class="row mt-80">
-                <div class="col-lg-4">
-                    <div class="d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5 mb-30">
-                        <div class="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                            <a class="color-white" href="single.html">
-                                <img src="assets/imgs/news/thumb-2.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="post-content media-body">
-                            <h6> <a href="category.html">Travel Tips</a> </h6>
-                            <p class="text-muted font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5 mb-30">
-                        <div class="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                            <a class="color-white" href="single.html">
-                                <img src="assets/imgs/news/thumb-4.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="post-content media-body">
-                            <h6> <a href="category.html">Lifestyle</a> </h6>
-                            <p class="text-muted font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-6">
-                    <div class="d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5 mb-30">
-                        <div class="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                            <a class="color-white" href="single.html">
-                                <img src="assets/imgs/news/thumb-3.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="post-content media-body">
-                            <h6> <a href="category.html">Hotel Review</a> </h6>
-                            <p class="text-muted font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -186,8 +140,7 @@ layout: default
                 </div>
                 <div class="col-lg-4">
                     <div class="widget-area">
-                        <div
-                            class="sidebar-widget widget-about mb-50 pt-30 pr-30 pb-30 pl-30 bg-white border-radius-5 has-border  wow fadeInUp animated">
+                        <div class="sidebar-widget widget-about mb-50 pt-30 pr-30 pb-30 pl-30 bg-white border-radius-5 has-border  wow fadeInUp animated">
                             <img class="about-author-img mb-25" src="assets/imgs/authors/author.jpg" alt="">
                             <h5 class="mb-20">Hello, I'm TheWildMonk</h5>
                             <p class="font-medium text-muted">
@@ -212,11 +165,9 @@ layout: default
                             </div>
                             <div class="widget_nav_menu">
                                 <ul>
-                                    <li class="cat-item cat-item-2"><a href="category/python">Python</a></li>
-                                    <li class="cat-item cat-item-2"><a href="category/datascience">Data Science</a></li>
-                                    <li class="cat-item cat-item-2"><a href="category/machinelearning">Machine Learning</a></li>
-                                    <li class="cat-item cat-item-2"><a href="category/deeplearning">Deep Learning</a></li>
-                                    <li class="cat-item cat-item-2"><a href="category/statistics">Statistics</a></li>
+                                    {% for cat in site.categories limit: 5 %}
+                                    <li class="cat-item cat-item-2"><a href="category/{{cat[0]}}">{{cat[0] | capitalize}}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
