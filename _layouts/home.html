@@ -1,6 +1,84 @@
 ---
 layout: default
 ---
+<!--Start search form-->
+<div class="main-search-form">
+    <div class="container">
+        <div class=" pt-50 pb-50 ">
+            <div class="row mb-20">
+                <div class="col-12 align-self-center main-search-form-cover m-auto">
+                    <p class="text-center"><span class="search-text-bg">Search</span></p>
+                    <form action="#" class="search-header">
+                        <div class="input-group w-100">
+                            <input type="text" class="form-control" placeholder="Search stories, places and people">
+                            <div class="input-group-append">
+                                <button class="btn btn-search bg-white" type="submit">
+                                    <i class="elegant-icon icon_search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-80 text-center">
+                <div class="col-12 font-small suggested-area">
+                    <h5 class="suggested font-heading mb-20 text-muted"> <strong>Suggested keywords:</strong></h5>
+                    <ul class="list-inline d-inline-block">
+                        <li class="list-inline-item"><a href="category.html">World</a></li>
+                        <li class="list-inline-item"><a href="category.html">American</a></li>
+                        <li class="list-inline-item"><a href="category.html">Opinion</a></li>
+                        <li class="list-inline-item"><a href="category.html">Tech</a></li>
+                        <li class="list-inline-item"><a href="category.html">Science</a></li>
+                        <li class="list-inline-item"><a href="category.html">Books</a></li>
+                        <li class="list-inline-item"><a href="category.html">Travel</a></li>
+                        <li class="list-inline-item"><a href="category.html">Business</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-80">
+                <div class="col-lg-4">
+                    <div class="d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5 mb-30">
+                        <div class="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                            <a class="color-white" href="single.html">
+                                <img src="assets/imgs/news/thumb-2.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="post-content media-body">
+                            <h6> <a href="category.html">Travel Tips</a> </h6>
+                            <p class="text-muted font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5 mb-30">
+                        <div class="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                            <a class="color-white" href="single.html">
+                                <img src="assets/imgs/news/thumb-4.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="post-content media-body">
+                            <h6> <a href="category.html">Lifestyle</a> </h6>
+                            <p class="text-muted font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-6">
+                    <div class="d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5 mb-30">
+                        <div class="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                            <a class="color-white" href="single.html">
+                                <img src="assets/imgs/news/thumb-3.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="post-content media-body">
+                            <h6> <a href="category.html">Hotel Review</a> </h6>
+                            <p class="text-muted font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Start Main content -->
 <main>
     <div class="featured-1">
@@ -78,7 +156,7 @@ layout: default
                     <div class="widget-header-1 position-relative mb-30  wow fadeInUp animated">
                         <h5 class="mt-5 mb-30">Recent Posts</h5>
                     </div>
-                    {% for post in site.posts limit: 3 %}
+                    {% for post in site.posts limit: 4 %}
                     <article class="col-md-12 mb-40 wow fadeInUp  animated">
                         <div class="post-card-1 border-radius-10 hover-up">
                             <div class="post-content p-30">
@@ -125,6 +203,63 @@ layout: default
                                             class="elegant-icon social_facebook"></i></a></li>
                                 <li class="list-inline-item"><a class="tw" href="https://twitter.com/shuvonasir" target="_blank" title="Tweet now"><i
                                             class="elegant-icon social_twitter"></i></a></li>
+                            </ul>
+                        </div>
+                        <!--Categories-->
+                        <div class="sidebar-widget widget_categories mb-50 mt-30">   
+                            <div class="widget-header-2 position-relative">
+                                <h5 class="mt-5 mb-15">Hot topics</h5>
+                            </div>
+                            <div class="widget_nav_menu">
+                                <ul>
+                                    <li class="cat-item cat-item-2"><a href="category/python">Python</a></li>
+                                    <li class="cat-item cat-item-2"><a href="category/datascience">Data Science</a></li>
+                                    <li class="cat-item cat-item-2"><a href="category/machinelearning">Machine Learning</a></li>
+                                    <li class="cat-item cat-item-2"><a href="category/deeplearning">Deep Learning</a></li>
+                                    <li class="cat-item cat-item-2"><a href="category/statistics">Statistics</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Latest-->
+                        <div class="sidebar-widget widget-latest-posts mb-50">
+                            <div class="widget-header-2 position-relative mb-30">
+                                <h5 class="mt-5 mb-30">Don't miss</h5>
+                            </div>
+                            <div class="post-block-list post-module-1 post-module-5">
+                                <ul class="list-post">
+                                    <li class="mb-30">
+                                        {% assign n = site.posts | size %}
+                                        {% assign posts = site.posts | sample: n %}
+                                        {% for post in posts limit: 3 %}
+                                        <div class="d-flex hover-up-2 transition-normal">
+                                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                                                <a class="color-white" href="{{post.url}}">
+                                                    <img src="{{post.image}}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="post-content media-body">
+                                                <h6 class="post-title mb-15 text-limit-2-row font-medium"><a href="{{post.url}}">{{post.title}}</a></h6>
+                                                <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
+                                                    <span class="post-on">{{post.date | date_to_string}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </br>
+                                        {% endfor %}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Social Media-->
+                        <div class="sidebar-widget">
+                            <div class="widget-header-2 position-relative mb-30">
+                                <h5 class="mt-5 mb-30">Follow Me</h5>
+                            </div>
+                            <ul class="header-social-network d-inline-block list-inline mr-15">
+                                <li class="list-inline-item"><a class="social-icon fb text-xs-center" target="_blank" href="https://facebook.com/shuvo.nasir.2203"><i
+                                            class="elegant-icon social_facebook"></i></a></li>
+                                <li class="list-inline-item"><a class="social-icon tw text-xs-center" target="_blank" href="https://twitter.com/shuvonasir"><i
+                                            class="elegant-icon social_twitter "></i></a></li>
                             </ul>
                         </div>
                     </div>
