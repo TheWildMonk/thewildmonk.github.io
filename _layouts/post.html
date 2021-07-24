@@ -2,105 +2,72 @@
 layout: default
 comments: true
 ---
-<!--Start search form-->
-<div class="main-search-form">
-    <div class="container">
-        <div class=" pt-50 pb-50 ">
-            <div class="row mb-20">
-                <div class="col-12 align-self-center main-search-form-cover m-auto">
-                    <p class="text-center"><span class="search-text-bg">Search</span></p>
-                    <form action="/search.html" method="get" class="search-header">
-                        <div class="input-group w-100">
-                            <input type="text" id="search-box" name="query" class="form-control" placeholder="Search stories, places and people">
-                            <div class="input-group-append">
-                                <button class="btn btn-search bg-white" type="submit" value="search">
-                                    <i class="elegant-icon icon_search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<!-- Start Main content -->
+<main class="bg-grey pb-30">
+    <!-- start container -->
+    <div class="container single-content">
+        <div class="entry-header entry-header-style-1 mb-50 pt-50">
+            <h1 class="entry-title mb-50 font-weight-900 text-center">
+                {{page.title}}
+            </h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="entry-meta align-items-center meta-2 font-small color-muted">
+                        <p class="mb-5">
+                            <a class="author-avatar" href="#"><img class="img-circle" src="{{post.url}}/assets/imgs/authors/author.jpg" alt=""></a>
+                            By <span class="author-name font-weight-bold">{{page.author}}</span>
+                        </p>
+                        <span class="mr-10"> {{page.date | date_to_string}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-80 text-center">
-                <div class="col-12 font-small suggested-area">
-                    <h5 class="suggested font-heading mb-20 text-muted"> <strong>Suggested keywords:</strong></h5>
-                    <ul class="list-inline d-inline-block">
-                        {% for cat in site.categories limit: 5 %}
-                        <li class="list-inline-item"><a href="{{base.url}}category/{{cat[0]}}">#{{cat[0] | upcase}} </a></li>
-                        {% endfor %}
+                <div class="col-md-6 text-right d-none d-md-inline">
+                    <ul>
+                        <li class="list-inline-item text-muted">
+                            <span>
+                                <div class="post-categories">
+                                    <span class="font-weight-bold">Categories:</span>
+                                    {% if post %}
+                                    {% assign categories = post.categories %}
+                                    {% else %}
+                                    {% assign categories = page.categories %}
+                                    {% endif %}
+                                    {% for category in categories %}
+                                    <a href="{{base.url}}/category/{{category|slugize}}">#{{category | capitalize}}</a>
+                                    {% unless forloop.last %}&nbsp;{% endunless %}
+                                    {% endfor %}
+                                </div>
+                            </span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- Start Main content -->
-    <!-- Start Main content -->
-    <main class="bg-grey pb-30">
-        <!-- start container -->
-        <div class="container single-content">
-            <div class="entry-header entry-header-style-1 mb-50 pt-50">
-                <h1 class="entry-title mb-50 font-weight-900 text-center">
-                    {{page.title}}
-                </h1>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="entry-meta align-items-center meta-2 font-small color-muted">
-                            <p class="mb-5">
-                                <a class="author-avatar" href="#"><img class="img-circle" src="{{post.url}}/assets/imgs/authors/author.jpg" alt=""></a>
-                                By <span class="author-name font-weight-bold">{{page.author}}</span>
-                            </p>
-                            <span class="mr-10"> {{page.date | date_to_string}}</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-right d-none d-md-inline">
-                        <ul>
-                            <li class="list-inline-item text-muted">
-                                <span>
-                                    <div class="post-categories">
-                                        <span class="font-weight-bold">Categories:</span>
-                                        {% if post %}
-                                        {% assign categories = post.categories %}
-                                        {% else %}
-                                        {% assign categories = page.categories %}
-                                        {% endif %}
-                                        {% for category in categories %}
-                                        <a href="{{base.url}}/category/{{category|slugize}}">#{{category | capitalize}}</a>
-                                        {% unless forloop.last %}&nbsp;{% endunless %}
-                                        {% endfor %}
-                                    </div>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--end single header-->
-            <article class="entry-wraper mb-50">
-                {{content}}
-            </article>
-            <hr class="wp-block-separator is-style-wide">
+        <!--end single header-->
+        <article class="entry-wraper mb-50">
+            {{content}}
+        </article>
+        <hr class="wp-block-separator is-style-wide">
 
-            <!-- Disqus Comment Box -->
-            <div id="disqus_thread" class="entry-wraper mb-50"></div>
-            <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://thewildmonk.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <!--container-->
-    </main>
-    <!-- End Main content -->
+        <!-- Disqus Comment Box -->
+        <div id="disqus_thread" class="entry-wraper mb-50"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://thewildmonk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <!--container-->
+</main>
+<!-- End Main content -->

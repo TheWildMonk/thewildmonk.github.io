@@ -1,37 +1,6 @@
 ---
 layout: default
 ---
-<!--Start search form-->
-<div class="main-search-form">
-    <div class="container">
-        <div class=" pt-50 pb-50 ">
-            <div class="row mb-20">
-                <div class="col-12 align-self-center main-search-form-cover m-auto">
-                    <p class="text-center"><span class="search-text-bg">Search</span></p>
-                    <form action="/search.html" method="get" class="search-header">
-                        <div class="input-group w-100">
-                            <input type="text" id="search-box" name="query" class="form-control" placeholder="Search stories, places and people">
-                            <div class="input-group-append">
-                                <button class="btn btn-search bg-white" type="submit" value="search">
-                                    <i class="elegant-icon icon_search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row mt-80 text-center">
-                <div class="col-12 font-small suggested-area">
-                    <h5 class="suggested font-heading mb-20 text-muted"> <strong>Suggested keywords:</strong></h5>
-                    <ul class="list-inline d-inline-block">
-                        {% for cat in site.categories limit: 5 %}
-                        <li class="list-inline-item"><a href="{{base.url}}category/{{cat[0]}}">#{{cat[0] | upcase}} </a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Start Main content -->
 {{content}}
+<!-- End Main content -->
