@@ -221,67 +221,10 @@ categories:
 <P class="font-weight-500">
   The conditional checks are there so that the snake can't reverse it's heading and move in the opposite direction 
   when the user strokes opposit direction key. We have now successfully created our snake and user control to move the snake up, down, left & right. And 
-  here's the full code snippet for today -
+  here's the full code snippet of main.py for today -
   </br>  
 </P>
 
-<!-- Content sub-header -->
-<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>Snake Module</u></h5>
-<!-- Code Area -->
-{% highlight python%}
-from turtle import Turtle
-
-SNAKE_MOVEMENT = 20
-UP = 90
-DOWN = 270
-RIGHT = 0
-LEFT = 180
-
-
-class Snake:
-    def __init__(self):
-        self.snake_body = []
-        self.create_snake()
-        self.head = self.snake_body[0]
-
-    def create_snake(self):
-        turtle_object = Turtle("square")
-        turtle_object.color("#f7f1e3")
-        turtle_object.penup()
-        x_cor = 0
-        for _ in range(3):
-            new_shape = turtle_object.clone()
-            new_shape.goto(x_cor, 0)
-            self.snake_body.append(new_shape)
-            x_cor -= 20
-        turtle_object.hideturtle()
-
-    def move(self):
-        for snake_part in range(len(self.snake_body) - 1, 0, -1):
-            new_x_cor = self.snake_body[snake_part - 1].xcor()
-            new_y_cor = self.snake_body[snake_part - 1].ycor()
-            self.snake_body[snake_part].goto(new_x_cor, new_y_cor)
-        self.head.forward(SNAKE_MOVEMENT)
-
-    def up(self):
-        if self.head.heading() != DOWN:
-            self.head.setheading(UP)
-
-    def down(self):
-        if self.head.heading() != UP:
-            self.head.setheading(DOWN)
-
-    def right(self):
-        if self.head.heading() != LEFT:
-            self.head.setheading(RIGHT)
-
-    def left(self):
-        if self.head.heading() != RIGHT:
-            self.head.setheading(LEFT)
-{% endhighlight %}
-
-<!-- Content sub-header -->
-<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>MAIN PROGRAM</u></h5>
 <!-- Code Area -->
 {% highlight python%} 
   from turtle import Screen
