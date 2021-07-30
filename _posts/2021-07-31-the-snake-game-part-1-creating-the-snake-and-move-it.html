@@ -1,0 +1,325 @@
+---
+layout: post
+permalink: /:categories/:title
+title: "The Snake Game - Part 1: Creating the Snake & Move It"
+date: 2021-07-31
+author: Shuvo Nasir
+image: /assets/imgs/post/snake_game_1.jpg"
+categories:
+  - "python"
+  - "snakegame"
+---
+<!-- Post Introduction -->
+<p class="font-weight-500">
+  Who hasn't played the most popular <strong>Snake Game</strong> that came out with almost all 
+  Nokia phones in the 90s'? In today's project, we recreated that same snake game with python 
+  using <a href="https://docs.python.org/3/library/turtle.html">turtle graphics</a>. 
+</p>
+</br>
+
+<!-- Post Image -->
+<figure class="image mb-30 m-auto text-center border-radius-10">
+  <img class="border-radius-10" src="{{post.url}}/assets/imgs/post/snake_game_1.jpg" alt="{{page.title}}" />
+</figure></br>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  In part 1 of the project, we will find out how to create the snake's body, move the snake and user control to 
+  change the direction of the snake to either up, down, left or right.
+  </br>  
+</P>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  After setting up the main.py file by importing all the initial modules for the project, we have to create  
+  a new module named snake.py which will be used to ceate the snake class with certain attributes & methods.
+  </br>  
+</P>
+
+<P class="font-weight-500">
+  At first we need to import turtle graphics to the snake.py. Then certain constants need to be declared 
+  to use in methods of Snake class.
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  from turtle import Turtle
+
+  SNAKE_MOVEMENT = 20
+  UP = 90
+  DOWN = 270
+  RIGHT = 0
+  LEFT = 180
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  Here, the SNAKE MOVEMENT constant is the speed of the snake with which it will move. And the rest are used 
+  to change the direction of snake's head. </br>
+
+<!-- Content sub-header -->
+<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>The Snake Class</u></h5>
+<!-- Post Content -->
+<P class="font-weight-500"></P>
+  After the constant declaration, the Snake class is initiated with a list to hold each part of snake's 
+  body as an object and a method to create parts of the snake.
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  class Snake:
+  def __init__(self):
+      self.snake_body = []
+      self.create_snake()
+{% endhighlight %}
+
+<!-- Content sub-header -->
+<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>Creating the Body</u></h5>
+<!-- Post Content -->
+<P class="font-weight-500">
+  The <strong>create_snake()</strong> method actually clones the initial turtle object 3 times with the help of a for loop. 
+  With each iteration, at first a clone of the initial turtle object is created, then with the 
+  <strong>goto()</strong> method of turtle, the cloned part is moved by 20 pixels behind the previous snake body part. This 
+  is because the default turtle object is 20 px in width and 20 px in height. In this way, the next body part 
+  of the snake will get attached to the previous body part. And finally, the cloned body part is appended to 
+  the list <strong>snake_body</strong>. After the iteration is done, the initial turtle object needs to be hidden so that when 
+  the snake moves on the turtle screen, the initial turtle object doesn't show up.
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  def create_snake(self):
+          turtle_object = Turtle("square")
+          turtle_object.color("#f7f1e3")
+          turtle_object.penup()
+          x_cor = 0
+          for _ in range(3):
+              new_shape = turtle_object.clone()
+              new_shape.goto(x_cor, 0)
+              self.snake_body.append(new_shape)
+              x_cor -= 20
+          turtle_object.hideturtle()
+{% endhighlight %}
+
+<!-- Content sub-header -->
+<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>Moving the Snake</u></h5>
+<!-- Post Content -->
+<P class="font-weight-500">
+  This part here is the trickiest part. The snake needs to move in a way, so that, if it changes the direction 
+  of the head, the rest of the body will follow. For this reason, we need to move each part of the snake to the 
+  second last position of the snake. If we just try to move each part independantly, then when the head of the 
+  snake will change it's direction, the reast of the body parts will not follow the head, rather it will keep 
+  moving to the last direction of the head. 
+  </br>  
+</P>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  Inside of the <strong>move()</strong> method, we'll initiate a for loop with a range from length of the 
+  <strong>snake_body</strong> list to 0 with step of -1. Then we'll grab hold of the x-coordinate and y-coordinate 
+  of the last position of the second last body part of the sanke. And then move the last body part to the position 
+  of the second last body part. In this way, when the snake's head changes it's direction, the next body part of 
+  the snake will follow the head. 
+  </br>  
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  def move(self):
+          for snake_part in range(len(self.snake_body) - 1, 0, -1):
+              new_x_cor = self.snake_body[snake_part - 1].xcor()
+              new_y_cor = self.snake_body[snake_part - 1].ycor()
+              self.snake_body[snake_part].goto(new_x_cor, new_y_cor)
+          self.head.forward(SNAKE_MOVEMENT)
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  In the main.py, we'll import the snake module and create a snake object. Then, to negate the screen update 
+  each time our snake moves, we will use the 
+  <a href="https://docs.python.org/3/library/turtle.html#turtle.tracer"><strong>tracer()</strong></a> 
+  method of the screen and set the argument to 0. Then, we'll create a while loop to continue the game.
+  To break the while loop, we'll set a trigger <strong>end_game</strong>.
+  </br>  
+</P>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  Inside the while loop, we'll call the <a href="https://docs.python.org/3/library/turtle.html#turtle.update"><strong>update()</strong></a> 
+  method to update the screen everytime our snake moves. Then, we'll have to import the time module of python. 
+  We have used the <a href="https://docs.python.org/3/library/time.html?highlight=sleep#time.sleep"><strong>sleep()</strong></a> 
+  method of the time module which takes 1 argument; time as millisecond as the speed of our snake. We'll have 
+  to declare a variable <strong>game_speed</strong> and set it's value 0.1. Then inside the <strong>sleep()</strong> 
+  method, we'll pass the variable.
+  </br>  
+</P>
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  After that, we'll call the <strong>move()</strong> method which will initiate the snake to move forward.
+  </br>  
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  # Run the game
+  game_speed = 0.1
+  end_game = False
+  while not end_game:
+      screen.update()
+      time.sleep(game_speed)
+      snake.move()
+{% endhighlight %}
+
+<!-- Content sub-header -->
+<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>User Control</u></h5>
+<!-- Post Content -->
+<P class="font-weight-500">
+  We'll use turtle's <a href="https://docs.python.org/3/library/turtle.html#turtle.listen"><strong>listen()</strong></a> 
+  method to listen for key strokes and the <a href="https://docs.python.org/3/library/turtle.html#turtle.onkey"><strong>onkey()</strong></a> 
+  method to set keys for the user to control the snake.
+  </br>  
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  # User control
+  screen.listen()
+  screen.onkey(snake.up, "Up")
+  screen.onkey(snake.down, "Down")
+  screen.onkey(snake.left, "Left")
+  screen.onkey(snake.right, "Right")
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  The key names are case sensitive and needs to be same as name of keys of the keyboard. After declaring the 
+  onkey() method, we'll create the up, down, left and right method inside our Snake class.
+  </br>  
+</P>
+
+<!-- Code Area -->
+{% highlight python%} 
+  def up(self):
+      if self.head.heading() != DOWN:
+          self.head.setheading(UP)
+
+  def down(self):
+      if self.head.heading() != UP:
+          self.head.setheading(DOWN)
+
+  def right(self):
+      if self.head.heading() != LEFT:
+          self.head.setheading(RIGHT)
+
+  def left(self):
+      if self.head.heading() != RIGHT:
+          self.head.setheading(LEFT)
+{% endhighlight %}
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  The conditional checks are there so that the snake can't reverse it's heading and move in the opposite direction 
+  when the user strokes opposit direction key. We have now successfully created our snake and user control to move the snake up, down, left & right. And 
+  here's the full code snippet for today -
+  </br>  
+</P>
+
+<!-- Content sub-header -->
+<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>Snake Module</u></h5>
+<!-- Code Area -->
+{% highlight python%}
+from turtle import Turtle
+
+SNAKE_MOVEMENT = 20
+UP = 90
+DOWN = 270
+RIGHT = 0
+LEFT = 180
+
+
+class Snake:
+    def __init__(self):
+        self.snake_body = []
+        self.create_snake()
+        self.head = self.snake_body[0]
+
+    def create_snake(self):
+        turtle_object = Turtle("square")
+        turtle_object.color("#f7f1e3")
+        turtle_object.penup()
+        x_cor = 0
+        for _ in range(3):
+            new_shape = turtle_object.clone()
+            new_shape.goto(x_cor, 0)
+            self.snake_body.append(new_shape)
+            x_cor -= 20
+        turtle_object.hideturtle()
+
+    def move(self):
+        for snake_part in range(len(self.snake_body) - 1, 0, -1):
+            new_x_cor = self.snake_body[snake_part - 1].xcor()
+            new_y_cor = self.snake_body[snake_part - 1].ycor()
+            self.snake_body[snake_part].goto(new_x_cor, new_y_cor)
+        self.head.forward(SNAKE_MOVEMENT)
+
+    def up(self):
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
+
+    def down(self):
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+
+    def right(self):
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
+
+    def left(self):
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
+{% endhighlight %}
+
+<!-- Content sub-header -->
+<h5 class="entry-title mb-20 font-weight-900 text-center" style="text-transform: uppercase;"><u>MAIN PROGRAM</u></h5>
+<!-- Code Area -->
+{% highlight python%} 
+  from turtle import Screen
+  from snake import Snake
+  import time
+
+  # Screen attributes
+  screen = Screen()
+  screen.setup(width=600, height=600)
+  screen.bgcolor("#2c2c54")
+  screen.title("The Snake Game")
+  screen.tracer(0)
+
+  # Create snake object
+  snake = Snake()
+
+  # User control
+  screen.listen()
+  screen.onkey(snake.up, "Up")
+  screen.onkey(snake.down, "Down")
+  screen.onkey(snake.left, "Left")
+  screen.onkey(snake.right, "Right")
+
+  # Run the game
+  game_speed = 0.1
+  end_game = False
+  while not end_game:
+      screen.update()
+      time.sleep(game_speed)
+      snake.move()
+
+  # Screen exit
+  screen.exitonclick()
+{% endhighlight %}
+
+
+<!-- Post Content -->
+<P class="font-weight-500">
+  The full project can be accessed via my <a href="https://github.com/TheWildMonk/snake-game-project" target="_blank"><u>github</u></a> repository.
+  With a monk like mind and a hand full of wild codes, I'll post tomorrow again in sha Allah for the second part of the snake game.
+</P>
