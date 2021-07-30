@@ -31,6 +31,7 @@ github_username:  TheWildMonk
 plugins:
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-sitemap
 
 # Pagination
 paginate: 10

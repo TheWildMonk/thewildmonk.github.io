@@ -36,3 +36,6 @@ gem "jekyll-paginate"
 
 # Syntax highlighting
 gem "rouge"
+
+# Google sitemap
+gem "jekyll-sitemap"
