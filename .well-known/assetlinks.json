@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "io.github.thewildmonk.twa",
+    "sha256_cert_fingerprints": ["52:84:80:03:BE:2E:C1:57:4E:A5:D6:08:1B:F5:29:E4:71:9F:F2:33:69:B2:EB:10:48:D6:93:E3:00:75:6C:05"]
+  }
+}]
